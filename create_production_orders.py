@@ -51,11 +51,12 @@ def create_issue():
 
         # Add Childs to Parent
         for c in childs:
-            child = jc.create_issue(field={
-                "project": { "key": "PRJ" },            # Meta
-                "issuetype": { "name": "Subtarefa" },   # Meta
-                "summary": c,                           # Meta
-            })
+            child = jc.create_issue(
+                project="PRJ",
+                summary=c,
+                issuetype={'name': 'subtarefa'},
+                parent={'key': issue.key}
+            )
             child.update(assignee=fields["assignee"])
 
 create_issue()
